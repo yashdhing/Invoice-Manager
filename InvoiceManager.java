@@ -1,7 +1,10 @@
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -12,14 +15,14 @@ import java.util.Scanner;
 
 
 public class InvoiceManager extends Application{
-    private Invoice invoice;
-    private Stage window, alert;
+//    private Invoice invoice;
+    private static Stage window, alert;
     private Scene mainScene;
-    private GridPane mainLayout;
-    private Label headerLabel, itemsLabel, menuLabel;
-
-    private ArrayList<Item> items;
-    private ArrayList<Invoice> invoices;
+//    private GridPane mainLayout;
+//    private Label headerLabel, itemsLabel, menuLabel;
+//
+//    private ArrayList<Item> items;
+//    private ArrayList<Invoice> invoices;
 
     public static void main(String[] args) {
         launch(args);
@@ -27,16 +30,18 @@ public class InvoiceManager extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        Parent mainLayout = FXMLLoader.load(getClass().getResource("manager.fxml"));
         //Window settings
         window = primaryStage;
         window.setTitle("Invoice Manager");
-        window.setMinWidth(600);
+        window.setMinWidth(625);
+        window.setWidth(650);
+
         window.setOnCloseRequest(e -> {
             e.consume();
-            EndPane.closeProgram(window);
+            Controller.closeProgram();
         });
-
+/*
         menuLabel = new Label("Menu:\n\n");
         headerLabel = new Label("New Invoice:\n\n");
         itemsLabel = new Label("Item details:\n\n");
@@ -49,13 +54,13 @@ public class InvoiceManager extends Application{
         ItemsPane.itemsGrid();
         EndPane.endOptionSettings(window);
         EndPane.endGrid();
-        gridSettings();
+        gridSettings();*/
 
         mainScene = new Scene(mainLayout, 800, 600);
         window.setScene(mainScene);
         window.show();
     }
-
+/*
     private void gridSettings() {
         mainLayout = new GridPane();
         mainLayout.setPadding(new Insets(10, 10, 10, 10));
@@ -73,7 +78,10 @@ public class InvoiceManager extends Application{
         mainLayout.getChildren().addAll(menuLabel, MenuPane.getMenuLayout(), headerLabel, HeaderPane.getHeaderLayout(), itemsLabel, ItemsPane.getItemLayout(), EndPane.getEndLayout());
     }
 
-
+*/
+    static Stage getWindow() {
+        return window;
+    }
 
     private void preset() {
 //        items = new ArrayList<>();

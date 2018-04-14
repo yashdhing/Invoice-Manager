@@ -1,17 +1,23 @@
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.Initializable;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.*;
 
-public class ConfirmationBox {
-    static boolean choice;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ConfirmationBox{
+    static Button yesButton;
+    static Button noButton;
+    static Label label;
+    static boolean choice = false;
 
     public static boolean display(String title, String message) {
-        //boolean choice = false;
         Stage confirmationWindow = new Stage();
 
         confirmationWindow.initModality(Modality.APPLICATION_MODAL);
@@ -20,7 +26,7 @@ public class ConfirmationBox {
         confirmationWindow.setMinHeight(150);
 
         Label label = new Label();
-        label.setText(message);
+        label.setText("Are you sure?");
 
         Button yes = new Button("Yes");
         Button no = new Button("No");
@@ -37,7 +43,7 @@ public class ConfirmationBox {
 
         HBox layout = new HBox(15);
         layout.getChildren().addAll(yes, no);
-        layout.setAlignment(Pos.CENTER);
+        layout.setAlignment(Pos.BOTTOM_CENTER);
 
         Scene scene = new Scene(layout);
 
